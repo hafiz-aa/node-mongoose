@@ -76,8 +76,10 @@ const Kelas = mongoose.model("Kelas", kelasSchema);
 //   console.log(data);
 // });
 
-const query = Kelas.find({ judul: "ExpressJS" });
-query.select("judul tglPosting");
+const filter = { judul: "ExpressJS" };
+const update = { deskripsi: "Belajar back-end menggunakan framework ExpressJS" };
+const query = Kelas.findOneAndUpdate(filter, update, { returnOriginal: false });
+query.select("judul deskripsi");
 query.exec((err, data) => {
   if (err) console.log(err);
 
